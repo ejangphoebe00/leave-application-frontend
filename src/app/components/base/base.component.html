@@ -8,7 +8,7 @@
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                 <span class="icon-menu"></span>
             </button>
-            
+
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-       
+
         <!-- partial -->
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -92,30 +92,32 @@
                         </ul>
                     </div>
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
                         aria-controls="ui-basic">
                         <i class="icon-layout menu-icon"></i>
-                        <span class="menu-title">UI Elements</span>
+                        <span class="menu-title">Applications</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link"
-                                    href="pages/ui-features/buttons.html">Buttons</a></li>
+                                    href="pages/ui-features/buttons.html">All</a></li>
                             <li class="nav-item"> <a class="nav-link"
-                                    href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                                    href="pages/ui-features/buttons.html">Pending</a></li>
                             <li class="nav-item"> <a class="nav-link"
-                                    href="pages/ui-features/typography.html">Typography</a></li>
+                                    href="pages/ui-features/dropdowns.html">Approved</a></li>
+                            <li class="nav-item"> <a class="nav-link"
+                                    href="pages/ui-features/typography.html">Denied</a></li>
                         </ul>
                     </div>
-                </li> -->
+                </li>
             </ul>
         </nav>
         <!-- partial -->
         <div class="main-panel">
             <router-outlet></router-outlet>
-        
+
             <!-- content-wrapper ends -->
             <app-footer></app-footer>
         </div>
@@ -123,5 +125,3 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
-  
-  
