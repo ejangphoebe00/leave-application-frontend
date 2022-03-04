@@ -11,12 +11,12 @@
     </div>
     <!-- <h4>Hello! let's get started</h4> -->
     <h6 class="font-weight-light">Sign in to continue.</h6>
-    <form class="pt-3" action="/login" method="post">
+    <form class="pt-3" (ngSubmit)="onSubmit()" ngNativeValidate>
         <div class="form-group">
-            <input type="email" name='email' class="form-control form-control-lg" placeholder="Email">
+            <input type="email" name="UserEmailAddress" (ngModel)="user.UserEmailAddress" class="form-control form-control-lg" placeholder="Email" required>
         </div>
         <div class="form-group">
-            <input type="password" name='password' class="form-control form-control-lg" placeholder="Password">
+            <input type="password" name='UserPassword' (ngModel)="user.UserPassword" class="form-control form-control-lg" placeholder="Password" required>
         </div>
         <div class="mt-3">
             <button type="submit" id="register-submit-btn" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
