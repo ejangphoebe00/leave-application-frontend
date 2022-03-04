@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-base',
@@ -11,5 +12,7 @@ export class BaseComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  d = new Date();
+  year = this.d.getFullYear();
 
 }
