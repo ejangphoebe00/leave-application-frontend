@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +23,8 @@ import { ListSingleUserApplicationsComponent } from './components/pages/list-sin
 import { ListSingleApplicationComponent } from './components/pages/list-single-application/list-single-application.component';
 import { ListAllApplicationsComponent } from './components/pages/list-all-applications/list-all-applications.component';
 import { ComputeApplicationComponent } from './components/pages/compute-application/compute-application.component';
+
+// import { applicationReducer } from './store/reducers/application.reducer';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,8 @@ import { ComputeApplicationComponent } from './components/pages/compute-applicat
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
