@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { LoginComponent } from './components/login/login.component';
+// import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BaseComponent } from './components/base/base.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -31,7 +31,7 @@ import { ComputeApplicationComponent } from './components/pages/compute-applicat
     AppComponent,
     FooterComponent,
     AuthComponent,
-    LoginComponent,
+    // LoginComponent,
     RegisterComponent,
     BaseComponent,
     NavComponent,
