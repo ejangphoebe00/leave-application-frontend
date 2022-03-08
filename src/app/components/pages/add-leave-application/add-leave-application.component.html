@@ -48,19 +48,28 @@
             <h4 class="card-description">
               Address
             </h4>
-            <div class="form-group">
-              <label>Address Details</label>
-              <input type="text" class="form-control" placeholder="eg. ntinda,kampala">
-            </div>
+            <div class="row">
+              <div class="col-6 form-group">
+                <label>Address Details</label>
+                <input type="text" class="form-control" placeholder="eg. ntinda,kampala">
+              </div>
 
-            <div class="form-group">
-              <label>Telephone</label>
-              <input type="tel" class="form-control" placeholder="eg. +256 770088007">
-            </div>
+              <div class="col-6 form-group">
+                <label>Telephone</label>
+                <input type="tel" class="form-control" placeholder="eg. +256 770088007">
+              </div>
 
-            <div class="form-group">
-              <label>Next of Kin Contact</label>
-              <input type="text" class="form-control" placeholder="eg. +256 770088007">
+              <div class="col-6 form-group">
+                <label>Next of Kin Contact</label>
+                <input type="text" class="form-control" placeholder="eg. +256 770088007">
+              </div>
+
+            </div>
+            <div class="displayFields"></div>
+            
+
+            <div>
+              <button class="btn btn-sm btn-primary" (click)="add()">Add</button>
             </div>
 
             <div class="text-center">
