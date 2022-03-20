@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthComponent } from './components/auth/auth.component';
-// import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BaseComponent } from './components/base/base.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -23,6 +23,10 @@ import { ListSingleUserApplicationsComponent } from './components/pages/list-sin
 import { ListSingleApplicationComponent } from './components/pages/list-single-application/list-single-application.component';
 import { ListAllApplicationsComponent } from './components/pages/list-all-applications/list-all-applications.component';
 import { ComputeApplicationComponent } from './components/pages/compute-application/compute-application.component';
+import { AuthService } from './services/auth.service';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effects';
+import { reducers } from 'src/app/store/app.state';
 
 // import { applicationReducer } from './store/reducers/application.reducer';
 
@@ -31,7 +35,7 @@ import { ComputeApplicationComponent } from './components/pages/compute-applicat
     AppComponent,
     FooterComponent,
     AuthComponent,
-    // LoginComponent,
+    LoginComponent,
     RegisterComponent,
     BaseComponent,
     NavComponent,
@@ -52,8 +56,15 @@ import { ComputeApplicationComponent } from './components/pages/compute-applicat
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    // EffectsModule.forRoot([
+    //   AuthEffects
+    // ]),
+
+    StoreModule.forRoot(reducers,{})
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

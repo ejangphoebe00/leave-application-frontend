@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 import { BaseComponent } from './components/base/base.component';
-// import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { AddLeaveApplicationComponent } from './components/pages/add-leave-application/add-leave-application.component';
 import { ComputeApplicationComponent } from './components/pages/compute-application/compute-application.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
@@ -18,9 +18,10 @@ import { RegisterComponent } from './components/register/register.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '', component: AuthComponent, children:[
-    // { path: 'sign-in', component: LoginComponent },
+    { path: 'sign-in', component: LoginComponent },
     { path: 'sign-up', component: RegisterComponent },
   ] },
+
   { path: '', component: BaseComponent, children:[
     { path: 'dashboard', component: DashboardComponent },
     { path: 'apply-for-leave', component: AddLeaveApplicationComponent },

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { AuthModel } from 'src/app/models/auth.model';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
+import { login } from 'src/app/store/actions/auth.actions';
+
+
 
 @Component({
   selector: 'app-login',
@@ -8,13 +13,20 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  user: AuthModel = new AuthModel();
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void{
-    console.log("submitted")
+    console.log(this.user.UserEmailAddress)
+    // this.store.dispatch(new LogIn(this.user));
+    const payload = this.user
+    this.store.dispatch(login(payload));
+
   }
 
 }
