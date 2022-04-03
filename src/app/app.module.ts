@@ -30,7 +30,7 @@ import { ListAllApplicationsComponent } from './components/pages/list-all-applic
 import { ComputeApplicationComponent } from './components/pages/compute-application/compute-application.component';
 
 import { reducers, metaReducers} from './store';
-import { ApplicationEffects } from './store/effects';
+import { ApplicationEffects, AuthEffects } from './store/effects';
 
 
 @NgModule({
@@ -63,7 +63,7 @@ import { ApplicationEffects } from './store/effects';
     StoreModule.forRoot(reducers,{
       metaReducers
     }),
-    EffectsModule.forRoot([ApplicationEffects]),
+    EffectsModule.forRoot([AuthEffects, ApplicationEffects]),
     HttpClientModule,
   ],
   providers: [{

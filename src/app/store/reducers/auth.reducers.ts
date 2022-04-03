@@ -21,13 +21,13 @@ export const initialState: AuthState = {
 
 export const loginReducer = createReducer(
   initialState,
-  on(userActions.login, (state, {data}) => ({...state,
+  on(userActions.login, (state, {user}) => ({user,
                           result:"", isLoading: true,
                           isLoadingSuccess: false, isLoadingFailure: false})),
-  on(userActions.loginSuccess, (state, result) => ({...state,
+  on(userActions.loginSuccess, (state, result) => ({user: result.user,
                           result, isLoading: false, isLoadingSuccess: true,
                           isLoadingFailure: false})),
-  on(userActions.signup, (state, {data}) => ({...state,
+  on(userActions.signup, (state, {user}) => ({user,
                           result: "", isLoading: true,
                           isLoadingSuccess: false, isLoadingFailure: false})),
   on(userActions.signupSuccess, (state, result) => ({user: state.user, result,

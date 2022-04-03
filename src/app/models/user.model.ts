@@ -1,4 +1,4 @@
 export class User {
-  Email?:string;
-  Password?:string;
+  UserEmailAddress?:string;
+  UserPassword?:string;
 }

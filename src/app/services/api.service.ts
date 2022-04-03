@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { AuthModel, Application } from '../models';
+import { User, AuthModel, Application } from '../models';
 import { environment } from 'src/environments/environment';
 
 
@@ -20,10 +20,11 @@ export class ApiService {
     return localStorage.getItem('access-token');
   }
 
-  login(payload: AuthModel): Observable<any> {
+  login(data: User): Observable<any> {
     const url = `${this.BASE_URL}/user/login`;
-    console.log(payload)
-    return this.http.post(url, {payload});
+    console.log("THIS IS THE PAYLOAD")
+    console.log(data)
+    return this.http.post(url, data);
   }
 
   signup(email: string,

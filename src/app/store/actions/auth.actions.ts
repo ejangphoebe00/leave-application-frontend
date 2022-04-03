@@ -25,7 +25,7 @@ export const PASSWORD_RECOVERY_FAILURE = '[Auth] Password Recovery Failure';
 // LOGIN ACTIONS
 export const login = createAction(
   LOGIN,
-  props<{data: User}>()
+  props<{user: User}>()
 );
 
 export const loginSuccess = createAction(
@@ -41,7 +41,7 @@ export const loginFailure = createAction(
 // SIGNUP ACTIONS
 export const signup = createAction(
   SIGNUP,
-  props<{data: User}>()
+  props<{user: User}>()
 );
 
 export const signupSuccess = createAction(

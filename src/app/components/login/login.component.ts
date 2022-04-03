@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import { AuthModel } from 'src/app/models';
+// import { AuthModel } from 'src/app/models';
 import * as authActions from 'src/app/store/actions/auth.actions';
 import * as fromRoot from 'src/app/store';
 
@@ -40,15 +40,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(loginForm: NgForm) {
-    console.log(this.user)
-    const data = { Email: this.user.email, Password: this.user.password }
-    this.store.dispatch(authActions.login({data}));
+    // console.log(this.user)
+    this.store.dispatch(authActions.login({
+      user: {
+              UserEmailAddress: this.user.email,
+              UserPassword: this.user.password
+            }
+    }));
   }
 
   ngOnDestroy(){
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
-}
+  }
 
 }
 
