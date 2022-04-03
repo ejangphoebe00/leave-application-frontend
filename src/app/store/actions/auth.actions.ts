@@ -1,33 +1,103 @@
 import { createAction, props } from '@ngrx/store';
-import { AuthModel } from 'src/app/models/auth.model';
+import { AuthModel, User } from 'src/app/models';
 
-export const login = createAction('[Auth] Login',
-    props<AuthModel>()
+
+export const LOGIN = '[Auth] Login User';
+export const LOGIN_SUCCESS = '[Auth] Login User Success';
+export const LOGIN_FAILURE = '[Auth] Login User Failure';
+
+export const SIGNUP = '[Auth] Register User';
+export const SIGNUP_SUCCESS = '[Auth] Register User Success';
+export const SIGNUP_FAILURE = '[Auth] Register User Failure';
+
+export const GET_USER = '[Auth] Get User';
+export const GET_USER_SUCCESS = '[Auth] Get User Success';
+export const GET_USER_FAILURE = '[Auth] Get User Failure';
+
+export const LOGOUT = '[Auth] Logout User';
+export const LOGOUT_SUCCESS = '[Auth] Logout User Success';
+export const LOGOUT_FAILURE = '[Auth] Logout User Failure';
+
+export const PASSWORD_RECOVERY = '[Auth] Password Recovery';
+export const PASSWORD_RECOVERY_SUCCESS = '[Auth] Password Recovery Success';
+export const PASSWORD_RECOVERY_FAILURE = '[Auth] Password Recovery Failure';
+
+// LOGIN ACTIONS
+export const login = createAction(
+  LOGIN,
+  props<{data: User}>()
 );
-export const loginComplete = createAction(
-    '[Auth] loginComplete',
-    props<{ user: AuthModel; isAuthenticated: boolean }>()
+
+export const loginSuccess = createAction(
+  LOGIN_SUCCESS,
+  props<any>()
 );
-export const loginError = createAction(
-    '[Auth] loginComplete',
-    props<{ errorMessage: string }>()
+
+export const loginFailure = createAction(
+  LOGIN_FAILURE,
+  props<{any}>()
 );
-export const register = createAction('[Auth] Register');
-export const reset = createAction('[Auth] Reset');
-export const logout = createAction('[Auth] logout');
-export const logoutComplete = createAction('[Auth] logoutComplete');
 
-// import { Action } from '@ngrx/store';
+// SIGNUP ACTIONS
+export const signup = createAction(
+  SIGNUP,
+  props<{data: User}>()
+);
+
+export const signupSuccess = createAction(
+  SIGNUP_SUCCESS,
+  props<any>()
+);
+
+export const signupFailure = createAction(
+  SIGNUP_FAILURE,
+  props<{any}>()
+);
 
 
-// export enum AuthActionTypes {
-//   LOGIN = '[Auth] Login'
-// }
+// GET USER ACTIONS
+export const getUser = createAction(
+  GET_USER
+);
 
-// export class LogIn implements Action {
-//     readonly type = AuthActionTypes.LOGIN;
-//     constructor(public payload: any) {}
-// }
+export const getUserSuccess = createAction(
+  GET_USER_SUCCESS,
+  props<any>()
+);
 
-// export type All =
-//     | LogIn;
+export const getUserFailure = createAction(
+  GET_USER_FAILURE,
+  props<{any}>()
+);
+
+// LOGOUT ACTIONS
+export const logout = createAction(
+  LOGOUT,
+  props<{user_id}>()
+);
+
+export const logoutSuccess = createAction(
+  LOGOUT_SUCCESS,
+  props<any>()
+);
+
+export const logoutFailure = createAction(
+  LOGOUT_FAILURE,
+  props<{any}>()
+);
+
+// PASSWORD RECOVERY ACTIONS
+export const passwordRecovery = createAction(
+  PASSWORD_RECOVERY,
+  props<{user_id}>()
+);
+
+export const passwordRecoverySuccess = createAction(
+  PASSWORD_RECOVERY_SUCCESS,
+  props<any>()
+);
+
+export const passwordRecoveryFailure = createAction(
+  PASSWORD_RECOVERY_FAILURE,
+  props<{any}>()
+);

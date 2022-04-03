@@ -1,62 +1,65 @@
-import { createReducer, on } from "@ngrx/store";
-import { AuthModel } from "src/app/models/auth.model";
-import * as AuthActions from "src/app/store/actions/auth.actions"
+import { Action, createReducer, on } from '@ngrx/store';
+import { User, AuthModel} from '../../models';
+import * as userActions from '../actions';
+import * as storage from '../storage';
 
 export interface AuthState {
-  // is a user authenticated?
-  isAuthenticated: boolean;
-  // if authenticated, there should be a user object
-  user: AuthModel | null;
-  errorMessage: string | null;
+  user: User;
+  result: any;
   isLoading: boolean;
+  isLoadingSuccess: boolean;
+  isLoadingFailure: boolean;
 }
 
 export const initialState: AuthState = {
-    isAuthenticated: false,
-    user: null,
-    errorMessage: null,
-    isLoading: false
+  user: storage.getItem('user').user,
+  result: '',
+  isLoading: false,
+  isLoadingSuccess: false,
+  isLoadingFailure: false
 };
 
-export const authReducer = createReducer(
+export const loginReducer = createReducer(
   initialState,
-
-  on(AuthActions.login, state => ({
-      ...state,
-      isLoading: true,
-  })),
-
-  on(AuthActions.loginComplete, (state, action) => ({
-    ...state,
-    user: action.user,
-    isAuthenticated: true
-  })),
-
-  on(AuthActions.loginError, (state, action) => ({
-    ...state,
-    errorMessage: action.errorMessage
-  })),
+  on(userActions.login, (state, {data}) => ({...state,
+                          result:"", isLoading: true,
+                          isLoadingSuccess: false, isLoadingFailure: false})),
+  on(userActions.loginSuccess, (state, result) => ({...state,
+                          result, isLoading: false, isLoadingSuccess: true,
+                          isLoadingFailure: false})),
+  on(userActions.signup, (state, {data}) => ({...state,
+                          result: "", isLoading: true,
+                          isLoadingSuccess: false, isLoadingFailure: false})),
+  on(userActions.signupSuccess, (state, result) => ({user: state.user, result,
+                          isLoading: false, isLoadingSuccess: true,
+                          isLoadingFailure: false}))
 );
 
-// const authReducerInternal = createReducer(
-//   initialAuthState,
+export function reducer(state: AuthState | undefined, action: Action): any {
+  return loginReducer(state, action);
+}
 
-//   on(authActions.loginComplete, (state, { profile, isLoggedIn }) => {
-//     return {
-//       ...state,
-//       profile,
-//       isLoggedIn,
-//     };
-//   }),
-//   on(authActions.logout, (state, {}) => {
-//     return {
-//       ...state,
-//       profile: null,
-//       isLoggedIn: false,
-//     };
-//   })
-// );
+export const getLoggedInUser = (state: AuthState) => {
+  return {
+    user: state.user,
+    isLoadingSuccess: state.isLoadingSuccess
+  }
+};
 
-// export function authReducer(state: AuthState | undefined, action: Action) {
-//   return authReducerInternal(state, action);
-// }
+export const userLogin = (state: AuthState) => {
+  return {
+    user: state.user,
+    result: state.result,
+    isLoading: state.isLoading,
+    isLoadingSuccess: state.isLoadingSuccess
+  }
+};
+
+export const userSignup = (state: AuthState) => {
+  return {
+    user: state.user,
+    result: state.result,
+    isLoading: state.isLoading,
+    isLoadingSuccess: state.isLoadingSuccess
+  }
+};

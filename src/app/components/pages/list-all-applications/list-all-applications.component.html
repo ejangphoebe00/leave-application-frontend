@@ -1,1 +1,9 @@
-<p>list-all-applications works!</p>
+<div class="content-wrapper">
+  <!-- <p>list-all-applications works!</p> -->
+
+<ul>
+  <li *ngFor="let app of applications; let i = index">
+    {{app.ApplicantLevel}}
+  </li>
+</ul>
+</div>

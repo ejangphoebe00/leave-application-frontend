@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
+import { ApiService } from './services/api.service';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { TokenInterceptorService } from './Interceptor/token-interceptor.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,12 +28,10 @@ import { ListSingleUserApplicationsComponent } from './components/pages/list-sin
 import { ListSingleApplicationComponent } from './components/pages/list-single-application/list-single-application.component';
 import { ListAllApplicationsComponent } from './components/pages/list-all-applications/list-all-applications.component';
 import { ComputeApplicationComponent } from './components/pages/compute-application/compute-application.component';
-import { AuthService } from './services/auth.service';
-import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './store/effects/auth.effects';
-import { reducers } from 'src/app/store/app.state';
 
-// import { applicationReducer } from './store/reducers/application.reducer';
+import { reducers, metaReducers} from './store';
+import { ApplicationEffects } from './store/effects';
+
 
 @NgModule({
   declarations: [
@@ -56,15 +59,18 @@ import { reducers } from 'src/app/store/app.state';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    // EffectsModule.forRoot([
-    //   AuthEffects
-    // ]),
-
-    StoreModule.forRoot(reducers,{})
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers,{
+      metaReducers
+    }),
+    EffectsModule.forRoot([ApplicationEffects]),
+    HttpClientModule,
   ],
-  providers: [
-    AuthService
-  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,14 +1,3 @@
-import * as auth from './reducers/auth.reducers';
-
-
-export interface AppState {
-  authState: auth.AuthState;
-}
-
-export const reducers = {
-  auth: auth.loginReducer
-};
-
 export const getThisState = (stateName) => {
   try{
       const serializedState = localStorage.getItem(stateName);
@@ -22,7 +11,7 @@ export const getThisState = (stateName) => {
 export const getItem = (itemName) => {
   const items = getThisState(itemName)
   if (items === undefined) {
-      return {application : []}
+      return {app_fs : []}
   } else {
       return items
   }
