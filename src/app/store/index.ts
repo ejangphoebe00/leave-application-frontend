@@ -1,4 +1,4 @@
-import { ApplicationEffects } from './effects';
+import { AuthEffects, ApplicationEffects } from './effects';
 import {
   ActionReducer,
   ActionReducerMap,
@@ -30,8 +30,8 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
 // console.log all actions
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function(state, action) {
-    console.log('state', state);
-    console.log('action', action);
+    // console.log('state', state);
+    // console.log('action', action);
 
     return reducer(state, action);
   };
@@ -43,18 +43,25 @@ export const metaReducers: MetaReducer<State>[] = !environment.production ? [deb
 
 // Application reducers Begin
 
-export const geApplicationState = createFeatureSelector<fromApplication.State>('application');
+export const getApplicationState = createFeatureSelector<fromApplication.State>('application');
+export const getcurrentApplicationState = createFeatureSelector<fromApplication.State>('currentApplication');
+export const getUserState = createFeatureSelector<fromUser.AuthState>('user');
 
 export const getApplications = createSelector(
-  geApplicationState,
+  getApplicationState,
   fromApplication.getApplications
+);
+
+export const getApplication = createSelector(
+  getApplicationState,
+  fromApplication.getApplication
 );
 
 // Application Effects
 
-export const appEffects = [ApplicationEffects];
+export const appEffects = [AuthEffects, ApplicationEffects];
 
-// USER
+// USER REDUCERS
 
 export const getLoginState = createFeatureSelector<fromUser.AuthState>('user');
 

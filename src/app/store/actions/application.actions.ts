@@ -43,7 +43,7 @@ export const ADD_RECOMMENDATION_FAILURE = '[Application] Add Recommendation Fail
 // CREATE APPLICATION ACTIONS
 export const createApplication = createAction(
   CREATE_APPLICATION,
-  props<{application: any}>()
+  props<{application: Application}>()
 );
 
 export const createApplicationSuccess = createAction(
@@ -57,20 +57,50 @@ export const createApplicationFailure = createAction(
 );
 
 // GET APPLICATION ACTIONS
-export const getApplications = createAction(
+export const getAllApplications = createAction(
   GET_ALL_APPLICATIONS
 );
 
-export const getApplicationsSuccess = createAction(
+export const getAllApplicationsSuccess = createAction(
   GET_ALL_APPLICATIONS_SUCCESS,
   props<any>()
 );
 
-export const getApplicationsFailure = createAction(
+export const getAllApplicationsFailure = createAction(
   GET_ALL_APPLICATIONS_FAILURE,
   props<{any}>()
 );
 
+// GET USER APPLICATION ACTIONS
+export const getUserApplications = createAction(
+  GET_USER_APPLICATIONS
+);
+
+export const getUserApplicationsSuccess = createAction(
+  GET_USER_APPLICATIONS_SUCCESS,
+  props<any>()
+);
+
+export const getUserApplicationsFailure = createAction(
+  GET_USER_APPLICATIONS_FAILURE,
+  props<{any}>()
+);
+
+// GET USER APPLICATION ACTIONS
+export const getSingleApplication = createAction(
+  GET_SINGLE_APPLICATION,
+  props<any>()
+);
+
+export const getSingleApplicationSuccess = createAction(
+  GET_SINGLE_APPLICATION_SUCCESS,
+  props<any>()
+);
+
+export const getSingleApplicationFailure = createAction(
+  GET_SINGLE_APPLICATION_FAILURE,
+  props<{any}>()
+);
 
 
 // export const deleteApplication = createAction(

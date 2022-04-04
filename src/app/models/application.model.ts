@@ -1,12 +1,12 @@
-export interface Application {
-    ApplicantLevel: string;
-    Designation: string;
-    TypeOfLeave: string;
-    NumberOfDaysNeeded: number;
-    ReturnDate: Date;
-    LeaveCommencement: Date;
-    ApplicationDate: Date;
-    AddressDetails: string;
-    Telephone: string;
-    NextofKinContact: string;
+export class Application {
+    ApplicantLevel?: string;
+    Designation?: string;
+    TypeOfLeave?: string;
+    NumberOfDaysNeeded?: number;
+    ReturnDate?: string;
+    LeaveCommencement?: string;
+    ApplicationDate?: string;
+    AddressDetail?: string;
+    Telephone?: string;
+    NextOfKinContact?: string;
 }

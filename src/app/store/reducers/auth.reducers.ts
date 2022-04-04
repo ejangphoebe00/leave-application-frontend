@@ -5,15 +5,17 @@ import * as storage from '../storage';
 
 export interface AuthState {
   user: User;
-  result: any;
-  isLoading: boolean;
-  isLoadingSuccess: boolean;
-  isLoadingFailure: boolean;
+  result?: any;
+  isAuthenticated?: boolean;
+  isLoading?: boolean;
+  isLoadingSuccess?: boolean;
+  isLoadingFailure?: boolean;
 }
 
 export const initialState: AuthState = {
   user: storage.getItem('user').user,
-  result: '',
+  result: {},
+  isAuthenticated: false,
   isLoading: false,
   isLoadingSuccess: false,
   isLoadingFailure: false
@@ -21,18 +23,14 @@ export const initialState: AuthState = {
 
 export const loginReducer = createReducer(
   initialState,
-  on(userActions.login, (state, {user}) => ({user,
-                          result:"", isLoading: true,
-                          isLoadingSuccess: false, isLoadingFailure: false})),
+  on(userActions.login, (state, {user}) => ({user, isLoading: true, })),
   on(userActions.loginSuccess, (state, result) => ({user: result.user,
-                          result, isLoading: false, isLoadingSuccess: true,
-                          isLoadingFailure: false})),
-  on(userActions.signup, (state, {user}) => ({user,
-                          result: "", isLoading: true,
-                          isLoadingSuccess: false, isLoadingFailure: false})),
+                          result, isAuthenticated: true, isLoading: false,
+                          isLoadingSuccess: true, isLoadingFailure: false})),
+  on(userActions.signup, (state, {user}) => ({user, isLoading: true, })),
   on(userActions.signupSuccess, (state, result) => ({user: state.user, result,
                           isLoading: false, isLoadingSuccess: true,
-                          isLoadingFailure: false}))
+                          isLoadingFailure: false, isAuthenticated: false}))
 );
 
 export function reducer(state: AuthState | undefined, action: Action): any {
@@ -42,6 +40,7 @@ export function reducer(state: AuthState | undefined, action: Action): any {
 export const getLoggedInUser = (state: AuthState) => {
   return {
     user: state.user,
+    result: state.result,
     isLoadingSuccess: state.isLoadingSuccess
   }
 };

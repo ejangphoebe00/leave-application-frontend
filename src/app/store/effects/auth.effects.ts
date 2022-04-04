@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, exhaustMap, catchError } from 'rxjs/operators';
+import { map, exhaustMap, catchError, tap} from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
@@ -13,6 +13,7 @@ export class AuthEffects {
     constructor(
         private actions$: Actions,
         private apiService: ApiService,
+        // private storage: localStorage
     ) { }
 
     // effects go here
@@ -21,10 +22,37 @@ export class AuthEffects {
       ofType(authActions.login),
       exhaustMap(action =>
         this.apiService.login(action.user).pipe(
-          map(response => authActions.loginSuccess(response)),
+          map(resp => {
+            console.log("REAPONSE", resp)
+            console.log(action)
+              return authActions.loginSuccess(
+              {
+              access_token:resp.access_token,
+              refresh_token:resp.refresh_token,
+              userId: resp.UserId,
+              role: resp.user_role,
+            });
+
+        }),
           catchError((error: any) => of(authActions.loginFailure(error))))
       )
     )
   );
+
+
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.logout),
+      exhaustMap(action =>
+        this.apiService.logout().pipe(
+          map(resp => authActions.logoutSuccess(resp)),
+          catchError((error: any) => of(authActions.logoutFailure(error))))
+      )
+    )
+  );
+
+
+
+
 
 }

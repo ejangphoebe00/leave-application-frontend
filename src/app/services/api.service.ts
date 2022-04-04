@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { User, AuthModel, Application } from '../models';
 import { environment } from 'src/environments/environment';
-
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -13,18 +13,30 @@ export class ApiService {
   private BASE_URL = environment.apiUrl;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
     ) {}
 
   getAccessToken(): string {
-    return localStorage.getItem('access-token');
+    return localStorage.getItem('access_token');
+  }
+
+  getUserId(): string {
+    return localStorage.getItem('userId');
   }
 
   login(data: User): Observable<any> {
     const url = `${this.BASE_URL}/user/login`;
-    console.log("THIS IS THE PAYLOAD")
-    console.log(data)
     return this.http.post(url, data);
+    this.router.navigate(['/apply-for-leave']);
+  }
+
+  logout(): Observable<any> {
+    const userId = this.getUserId()
+    const url = `${this.BASE_URL}/user/logout/${userId}`;
+    localStorage.removeItem('token')
+    this.router.navigate(['/sign-in']);
+    return this.http.delete(url);
   }
 
   signup(email: string,
@@ -33,30 +45,32 @@ export class ApiService {
     return this.http.post<AuthModel>(url, {email, password});
   }
 
-  addApplication(payload: any) {
-    const url = this.BASE_URL + "/apiv1/apply_for_leave";
-    // const application = {
-    //   ApplicantLevel: "SENIOR",
-    //   Designation: "IT",
-    //   TypeOfLeave: "ANNUAL",
-    //   NumberOfDaysNeeded: 14,
-    //   ReturnDate: null ,
-    //   LeaveCommencement: null,
-    //   ApplicationDate: null,
-    //   AddressDetails: "kampala",
-    //   Telephone: "+256 788815149",
-    //   NextofKinContact: "+256 768815149",
-    // };
-    console.log(payload)
-    return this.http.post(url, payload);
+  addApplication(data: Application): Observable<any> {
+    const url = `${this.BASE_URL}/apiv1/apply_for_leave`;
+    console.log("THIS IS THE PAYLOAD")
+    console.log(data)
+    console.log(this.getAccessToken())
+    return this.http.post(url, data);
   }
 
-  getApplication(): Observable<any> {
-    return this.http.get(this.BASE_URL + '/application');
+  getAllApplications() {
+    const url = `${this.BASE_URL}/apiv1/get_all_applications`
+    return this.http.get(url);
   }
 
-  getApplications() {
-    return this.http.get(this.BASE_URL + '/application');
+
+  getUserApplications(): Observable<any> {
+    const userId = this.getUserId()
+    console.log("THIS IS THE USER ID", userId)
+    const url = `${this.BASE_URL}/apiv1/get_user_applications/${userId}`
+    return this.http.get(url);
+  }
+
+
+  getSingleApplication(applicationId: any): Observable<any> {
+    // const url = `${this.BASE_URL}/apiv1/get_single_application/${applicationId}`
+    const url = `${this.BASE_URL}/apiv1/get_single_application/2`
+    return this.http.get(url);
   }
 
   editApplication(payload: any) {

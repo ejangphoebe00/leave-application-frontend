@@ -27,7 +27,6 @@ import { EditAddressDetailsComponent } from './components/pages/edit-address-det
 import { ListSingleUserApplicationsComponent } from './components/pages/list-single-user-applications/list-single-user-applications.component';
 import { ListSingleApplicationComponent } from './components/pages/list-single-application/list-single-application.component';
 import { ListAllApplicationsComponent } from './components/pages/list-all-applications/list-all-applications.component';
-import { ComputeApplicationComponent } from './components/pages/compute-application/compute-application.component';
 
 import { reducers, metaReducers} from './store';
 import { ApplicationEffects, AuthEffects } from './store/effects';
@@ -53,7 +52,6 @@ import { ApplicationEffects, AuthEffects } from './store/effects';
     ListSingleUserApplicationsComponent,
     ListSingleApplicationComponent,
     ListAllApplicationsComponent,
-    ComputeApplicationComponent,
   ],
   imports: [
     BrowserModule,

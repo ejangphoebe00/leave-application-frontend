@@ -14,40 +14,15 @@ export class ApplicationEffects {
     private apiService: ApiService
   ) {}
 
-  getApplications$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(applicationActions.getApplications),
-      exhaustMap(action =>
-        this.apiService.getApplications().pipe(
-          map(response => {
-            console.log("response:::", response)
-            return applicationActions.getApplicationsSuccess({response})
-          }),
-          catchError((error: any) => of(applicationActions.getApplicationsFailure(error))))
-      )
-    )
-  );
-
   createApplication$ = createEffect(() =>
     this.actions$.pipe(
       ofType(applicationActions.createApplication),
-      exhaustMap(action =>
-        this.apiService.addApplication(action.application).pipe(
+      exhaustMap(action => this.apiService.addApplication(action.application).pipe(
           map(response => applicationActions.createApplicationSuccess(response)),
           catchError((error: any) => of(applicationActions.createApplicationFailure(error))))
       )
     )
   );
-
-  // deleteApplication$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(applicationActions.deleteApplication),
-  //     exhaustMap(action => this.apiService.deleteApplication(action.applicationid).pipe(
-  //         map(response => applicationActions.deleteApplicationSuccess(response)),
-  //         catchError((error: any) => of(applicationActions.deleteApplicationFailure(error))))
-  //     )
-  //   )
-  // );
 
   editApplication$ = createEffect(() =>
     this.actions$.pipe(
@@ -56,6 +31,48 @@ export class ApplicationEffects {
         this.apiService.editApplication(action.application).pipe(
           map(response => applicationActions.editApplicationSuccess(response)),
           catchError((error: any) => of(applicationActions.editApplicationFailure(error))))
+      )
+    )
+  );
+
+  getAllApplications$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(applicationActions.getAllApplications),
+      exhaustMap(action =>
+        this.apiService.getAllApplications().pipe(
+          map(response => {
+            console.log("response:::", response)
+            return applicationActions.getAllApplicationsSuccess({response})
+          }),
+          catchError((error: any) => of(applicationActions.getAllApplicationsFailure(error))))
+      )
+    )
+  );
+
+  getUserApplications$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(applicationActions.getUserApplications),
+      exhaustMap(action =>
+        this.apiService.getUserApplications().pipe(
+          map(response => {
+            console.log("response:::", response)
+            return applicationActions.getUserApplicationsSuccess({response})
+          }),
+          catchError((error: any) => of(applicationActions.getUserApplicationsFailure(error))))
+      )
+    )
+  );
+
+  getSingleApplication$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(applicationActions.getSingleApplication),
+      exhaustMap(action =>
+        this.apiService.getSingleApplication(action.applicationId).pipe(
+          map(response => {
+            console.log("response:::", response)
+            return applicationActions.getSingleApplicationSuccess({response})
+          }),
+          catchError((error: any) => of(applicationActions.getSingleApplicationFailure(error))))
       )
     )
   );

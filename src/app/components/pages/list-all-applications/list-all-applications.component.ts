@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { takeUntil} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import * as fromRoot from 'src/app/store';
+import * as applicationActions from 'src/app/store/actions/application.actions';
 
 
 @Component({
@@ -19,11 +20,15 @@ export class ListAllApplicationsComponent {
   ) {
     this.store.select(fromRoot.getApplications).pipe(
         takeUntil(this.destroy$)
-      ).subscribe(data => this.applications = data.applications);
+      ).subscribe(data => {
+        this.applications = data.applications
+      });
   }
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(applicationActions.getAllApplications());
+  }
 
 }

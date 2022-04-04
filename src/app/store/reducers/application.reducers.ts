@@ -6,6 +6,7 @@ import * as storage from '../storage';
 
 export interface State {
   applications?: Application[];
+  application?: Application;
   currentApplication?: Application;
   deleteApplicationId?: any;
   result?: any;
@@ -16,7 +17,8 @@ export interface State {
 
 export const initialState: State = {
   applications: storage.getItem('app_f').applications,
-  currentApplication: null,
+  currentApplication: {},
+  application: {},
   deleteApplicationId: '',
   result: '',
   isLoading: false,
@@ -26,12 +28,6 @@ export const initialState: State = {
 
 const app_fReducer = createReducer(
   initialState,
-
-  // GeApplications
-  on(applicationActions.getApplications, (state) => ({
-    ...state, isLoading: true})),
-  on(applicationActions.getApplicationsSuccess, (state, result) => ({
-    applications: result.response, isLoading: false, isLoadingSuccess: true})),
 
   // Create Application Reducers
   on(applicationActions.createApplication, (state, {application}) => ({
@@ -45,12 +41,31 @@ const app_fReducer = createReducer(
     ) : {};
     currentApplication.id = result.applicationId;
     applications.push(currentApplication);
+    // for i in
     return {
       applications,
       isLoading: false,
       isLoadingSuccess: true
     };
   }),
+
+  // Get All Applications
+  on(applicationActions.getAllApplications, (state) => ({
+    ...state, isLoading: true})),
+  on(applicationActions.getAllApplicationsSuccess, (state, result) => ({
+    applications: result.response, isLoading: false, isLoadingSuccess: true})),
+
+  // Get All User Applications
+  on(applicationActions.getUserApplications, (state) => ({
+    ...state, isLoading: true})),
+  on(applicationActions.getUserApplicationsSuccess, (state, result) => ({
+    applications: result.response, isLoading: false, isLoadingSuccess: true})),
+
+  // Get Single Application
+  on(applicationActions.getSingleApplication, (state) => ({
+    ...state, isLoading: true})),
+  on(applicationActions.getSingleApplicationSuccess, (state, result) => ({
+      application: result.response, isLoading: true, isLoadingSuccess: true })),
 
   // Delete Application Reducers
   // on(applicationActions.deleteApplication, (state, {applicationid}) => ({...state, isLoading: true, deleteApplicationId: applicationid})),
@@ -81,9 +96,9 @@ const app_fReducer = createReducer(
       applications,
       isLoading: false,
       isLoadingSuccess: true
-    };
-  })
-);
+      };
+    })
+  );
 
 export function reducer(state: State | undefined, action: Action): any {
   return app_fReducer(state, action);
@@ -92,6 +107,14 @@ export function reducer(state: State | undefined, action: Action): any {
 export const getApplications = (state: State) => {
   return {
     applications: state.applications,
+    isLoading: state.isLoading,
+    isLoadingSuccess: state.isLoadingSuccess
+  };
+};
+
+export const getApplication = (state: State) => {
+  return {
+    application: state.application,
     isLoading: state.isLoading,
     isLoadingSuccess: state.isLoadingSuccess
   };

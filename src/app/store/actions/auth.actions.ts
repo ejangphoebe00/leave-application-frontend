@@ -73,7 +73,6 @@ export const getUserFailure = createAction(
 // LOGOUT ACTIONS
 export const logout = createAction(
   LOGOUT,
-  props<{user_id}>()
 );
 
 export const logoutSuccess = createAction(
@@ -86,10 +85,11 @@ export const logoutFailure = createAction(
   props<{any}>()
 );
 
+
 // PASSWORD RECOVERY ACTIONS
 export const passwordRecovery = createAction(
   PASSWORD_RECOVERY,
-  props<{user_id}>()
+  props<any>()
 );
 
 export const passwordRecoverySuccess = createAction(

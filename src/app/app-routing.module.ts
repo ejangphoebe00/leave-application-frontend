@@ -4,7 +4,6 @@ import { AuthComponent } from './components/auth/auth.component';
 import { BaseComponent } from './components/base/base.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddLeaveApplicationComponent } from './components/pages/add-leave-application/add-leave-application.component';
-import { ComputeApplicationComponent } from './components/pages/compute-application/compute-application.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { EditLeaveApplicationComponent } from './components/pages/edit-leave-application/edit-leave-application.component';
 import { EditProfileComponent } from './components/pages/edit-profile/edit-profile.component';
@@ -26,11 +25,10 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'apply-for-leave', component: AddLeaveApplicationComponent },
     { path: 'edit-leave-application/:application-id', component: EditLeaveApplicationComponent },
-    { path: 'compute-leave-application/:application-id', component: ComputeApplicationComponent },
-    { path: 'edit-profile/:user-id', component: EditProfileComponent },
+    { path: 'edit-profile', component: EditProfileComponent },
     { path: 'list-all-applications', component: ListAllApplicationsComponent },
-    { path: 'list-single-application/:application-id', component: ListSingleApplicationComponent },
-    { path: 'user-applications/:user-id', component: ListSingleUserApplicationsComponent },
+    { path: 'list-single-application', component: ListSingleApplicationComponent },
+    { path: 'user-applications', component: ListSingleUserApplicationsComponent },
     { path: 'forgot-password-page', component: PasswordResetEmailComponent },
     { path: 'reset-password-page', component: PasswordResetComponent },
   ] },
