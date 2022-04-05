@@ -5,6 +5,8 @@ import { StoreModule } from '@ngrx/store';
 import { ApiService } from './services/api.service';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DataTablesModule } from "angular-datatables";
+
 
 import { TokenInterceptorService } from './Interceptor/token-interceptor.service';
 
@@ -57,6 +59,7 @@ import { ApplicationEffects, AuthEffects } from './store/effects';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    DataTablesModule.forRoot(),
     ReactiveFormsModule,
     StoreModule.forRoot(reducers,{
       metaReducers

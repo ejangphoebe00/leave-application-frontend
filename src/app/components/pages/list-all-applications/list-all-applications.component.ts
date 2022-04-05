@@ -15,10 +15,8 @@ import * as applicationActions from 'src/app/store/actions/application.actions';
 export class ListAllApplicationsComponent {
 
   applications: any[] = [];
-  // isStaff: boolean;
-  // isAdmin: boolean;
-  // role: string;
-  // isAuthenticated: boolean;
+  dtOptions: any = {};
+  dtTrigger: Subject<any> = new Subject<any>();
 
   constructor(
     // private apiService: ApiService,
@@ -27,7 +25,8 @@ export class ListAllApplicationsComponent {
     this.store.select(fromRoot.getApplications).pipe(
         takeUntil(this.destroy$)
       ).subscribe(data => {
-        this.applications = data.applications
+        this.applications = data.applications;
+        this.dtTrigger.next();
       });
   }
 
@@ -35,23 +34,33 @@ export class ListAllApplicationsComponent {
 
   ngOnInit(): void {
     this.store.dispatch(applicationActions.getAllApplications());
-    // console.log(this.apiService.getAccessToken());
+      this.dtOptions = {
+        dom:'Bfrtip',
+        buttons: [
 
+          {
+            extend:'print',
+            tag: 'button',
+            className: "btn yellow btn-outline"
+          },
+          {
+            extend:'excel',
+            tag: 'button',
+            className: "btn green btn-outline"
+          },
+          {
+            extend:'pdf',
+            tag: 'button',
+            className: "btn red btn-outline"
+          },
+        ],
+
+      }
   }
-  // isAuthenticated = )
-  // if(isAuthenticated){
-  //   this.role = this.apiService.getRole()
-  //   // if(role == "HR"){
-  //   //   this.isAdmin=true;
-  //   // }else{
-  //   //   this.isAdmin= false;
-  //   // }
-  // }
-    //
-    // if(this.authservice.getRole()=="Staff"){
-    //   this.isStaff=true;
-    // }else{
-    // this.isStaff= false;
-    // }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
 
 }

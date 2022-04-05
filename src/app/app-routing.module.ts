@@ -26,7 +26,7 @@ const routes: Routes = [
   children:[
     { path: 'dashboard', component: DashboardComponent },
     { path: 'apply-for-leave', component: AddLeaveApplicationComponent },
-    { path: 'edit-leave-application/:application-id', component: EditLeaveApplicationComponent },
+    { path: 'edit-leave-application', component: EditLeaveApplicationComponent },
     { path: 'edit-profile', component: EditProfileComponent },
     { path: 'list-all-applications', component: ListAllApplicationsComponent },
     { path: 'list-single-application', component: ListSingleApplicationComponent },

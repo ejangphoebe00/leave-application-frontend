@@ -1,1 +1,109 @@
-<p>edit-leave-application works!</p>
+<div class="container-fluid">
+
+    <div class="container">
+      <!-- Title -->
+      <div class="d-flex justify-content-between align-items-center py-3 p-5">
+        <h3>Application for Leave</h3>
+      </div>
+
+      <!-- Main content -->
+      <form>
+        <div class="row">
+          <div class="col-lg-8">
+            <!-- Details -->
+            <div class="card ">
+              <div class="card-body">
+
+                <h4 class="card-description">
+                Personal info
+                </h4>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Designation</label>
+                      <input type="text" class="form-control form-control-sm" formControlName="Designation" placeholder="Designation" aria-label="Designation">
+                    </div>
+                    <div class="form-group">
+                      <label>Type of leave</label>
+                      <input type="text" class="form-control form-control-sm" formControlName="TypeOfLeave" placeholder="Type of leave" aria-label="Typeofleave">
+                    </div>
+                    <div class="form-group">
+                      <label>Return Date</label>
+                      <input type="text" class="form-control form-control-sm" formControlName="ReturnDate" placeholder="dd/mm/yyyy" aria-label="Returndate">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Applicant Level</label>
+                      <input type="text" class="form-control form-control-sm" formControlName="ApplicantLevel" placeholder="Applicant Level" aria-label="ApplicantLevel">
+                    </div>
+                    <div class="form-group">
+                      <label>Number Of Days Needed</label>
+                      <input type="text" class="form-control form-control-sm" formControlName="NumberOfDaysNeeded" placeholder="0" aria-label="numberofdaysrequired">
+                    </div>
+                    <div class="form-group">
+                      <label>Leave Commencement</label>
+                      <input type="text" class="form-control form-control-sm" formControlName="LeaveCommencement" placeholder="Leave Commencement" aria-label="LeaveComencement">
+                    </div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 grid-margin">
+                    <div class="card">
+                      <div class="card-body">
+
+                        <div class="displayFields"></div>
+
+
+                        <!-- <div>
+                          <button class="btn btn-sm btn-primary" (click)="add()">Add</button>
+                        </div> -->
+
+                        <div class="text-center">
+                         <button type="submit" class="btn btn-primary btn-icon-text">
+                           Submit
+                         </button>
+                       </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <!-- Customer Notes -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <h4 class="card-description">
+                  Address
+                </h4>
+                <div class="row">
+                  <div class="col-12 form-group">
+                    <label>Address Detail</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="AddressDetail" placeholder="eg. ntinda,kampala">
+                  </div>
+
+                  <div class="col-12 form-group">
+                    <label>Telephone</label>
+                    <input type="tel" class="form-control form-control-sm" formControlName="Telephone" placeholder="eg. +256 770088007">
+                  </div>
+
+                  <div class="col-12 form-group">
+                    <label>Next of Kin Contact</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="NextofKinContact" placeholder="eg. +256 770088007">
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
