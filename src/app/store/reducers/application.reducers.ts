@@ -67,30 +67,16 @@ const app_fReducer = createReducer(
   on(applicationActions.getSingleApplicationSuccess, (state, result) => ({
       application: result.response, isLoading: true, isLoadingSuccess: true })),
 
-  // Delete Application Reducers
-  // on(applicationActions.deleteApplication, (state, {applicationid}) => ({...state, isLoading: true, deleteApplicationId: applicationid})),
-  // on(applicationActions.deleteApplicationSuccess, (state, result) => {
-  //   let applications = undefined !== state.applications ? _.cloneDeep(state.applications) : [];
-  //   if (result.status) {
-  //     applications = applications.filter(application => application.id !== state.deleteApplicationId);
-  //   }
-  //   return {
-  //     applications,
-  //     isLoading: false,
-  //     isLoadingSuccess: true
-  //   };
-  // }),
-
-   // Edit Application Reducers
-   on(applicationActions.editApplication, (state, {application}) => ({...state, isLoading: true, currentApplication: application})),
-   on(applicationActions.editApplicationSuccess, (state, result) => {
+  // Edit Application Reducers
+  on(applicationActions.editApplication, (state, {application}) => ({...state, isLoading: true, currentApplication: application})),
+  on(applicationActions.editApplicationSuccess, (state, result) => {
     let applications = undefined !== state.applications ? _.cloneDeep(state.applications) : [];
     const currentApplication = undefined !== state.currentApplication ? _.cloneDeep(state.currentApplication) : {};
-    applications = applications.map(tsk => {
-      if (tsk.id === currentApplication.id) {
-        tsk = currentApplication;
+    applications = applications.map(application => {
+      if (application.id === currentApplication.id) {
+        application = currentApplication;
       }
-      return tsk;
+      return application;
     });
     return {
       applications,
@@ -99,6 +85,49 @@ const app_fReducer = createReducer(
       };
     })
   );
+
+
+  // on(applicationActions.computeApplication, (state, {application}) => ({...state, isLoading: true, currentApplication: application})),
+  // on(applicationActions.computeApplicationSuccess, (state, result) => {
+  //   let applications = undefined !== state.applications ? _.cloneDeep(state.applications) : [];
+  //   const currentApplication = undefined !== state.currentApplication ? _.cloneDeep(state.currentApplication) : {};
+  //   applications = applications.map(application => {
+  //     if (application.id === currentApplication.id) {
+  //       application = currentApplication;
+  //     }
+  //     return application;
+  //   });
+  //   return {
+  //     applications,
+  //     isLoading: false,
+  //     isLoadingSuccess: true
+  //     };
+  //   })
+  // );
+  //
+  //
+  //
+  // on(applicationActions.approveApplication, (state, {application}) => ({...state, isLoading: true, currentApplication: application})),
+  // on(applicationActions.approveApplicationSuccess, (state, result) => {
+  //   let applications = undefined !== state.applications ? _.cloneDeep(state.applications) : [];
+  //   const currentApplication = undefined !== state.currentApplication ? _.cloneDeep(state.currentApplication) : {};
+  //   applications = applications.map(application => {
+  //     if (application.id === currentApplication.id) {
+  //       application = currentApplication;
+  //     }
+  //     return application;
+  //   });
+  //   return {
+  //     applications,
+  //     isLoading: false,
+  //     isLoadingSuccess: true
+  //     };
+  //   })
+  // );
+
+
+
+
 
 export function reducer(state: State | undefined, action: Action): any {
   return app_fReducer(state, action);

@@ -1,4 +1,5 @@
 export class Application {
+    applicationId?: string;
     ApplicantLevel?: string;
     Designation?: string;
     TypeOfLeave?: string;

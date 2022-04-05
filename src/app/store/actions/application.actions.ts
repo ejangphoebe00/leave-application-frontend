@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Application } from '../../models';
+import { Recommendation } from '../../models';
 
 
 
@@ -56,6 +57,22 @@ export const createApplicationFailure = createAction(
   props<{any}>()
 );
 
+// EDIT APPLICATION
+export const editApplication = createAction(
+  EDIT_APPLICATION,
+  props<{application: any}>()
+);
+
+export const editApplicationSuccess = createAction(
+  EDIT_APPLICATION_SUCCESS,
+  props<any>()
+);
+
+export const editApplicationFailure = createAction(
+  EDIT_APPLICATION_FAILURE,
+  props<{any}>()
+);
+
 // GET APPLICATION ACTIONS
 export const getAllApplications = createAction(
   GET_ALL_APPLICATIONS
@@ -102,33 +119,50 @@ export const getSingleApplicationFailure = createAction(
   props<{any}>()
 );
 
-
-// export const deleteApplication = createAction(
-//   DELETE_APPLICATION,
-//   props<{applicationid}>()
-// );
-//
-// export const deleteApplicationSuccess = createAction(
-//   DELETE_APPLICATION_SUCCESS,
-//   props<any>()
-// );
-//
-// export const deleteApplicationFailure = createAction(
-//   DELETE_APPLICATION_FAILURE,
-//   props<{any}>()
-// );
-
-export const editApplication = createAction(
-  EDIT_APPLICATION,
-  props<{application: any}>()
+// COMPUTE APPLICATION
+export const computeApplication = createAction(
+  COMPUTE_APPLICATION,
+  props<{any}>()
 );
 
-export const editApplicationSuccess = createAction(
-  EDIT_APPLICATION_SUCCESS,
+export const computeApplicationSuccess = createAction(
+  COMPUTE_APPLICATION_SUCCESS,
   props<any>()
 );
 
-export const editApplicationFailure = createAction(
-  EDIT_APPLICATION_FAILURE,
+export const computeApplicationFailure = createAction(
+  COMPUTE_APPLICATION_FAILURE,
+  props<{any}>()
+);
+
+// APPROVE APPLICATION
+export const approveApplication = createAction(
+  APPROVE_APPLICATION,
+  props<{any}>()
+);
+
+export const approveApplicationSuccess = createAction(
+  APPROVE_APPLICATION_SUCCESS,
+  props<any>()
+);
+
+export const approveApplicationFailure = createAction(
+  APPROVE_APPLICATION_FAILURE,
+  props<{any}>()
+);
+
+// ADD RECOMMENDATION
+export const addRecommendation = createAction(
+  ADD_RECOMMENDATION,
+  props<{any}>()
+);
+
+export const addRecommendationSuccess = createAction(
+  ADD_RECOMMENDATION_SUCCESS,
+  props<any>()
+);
+
+export const addRecommendationFailure = createAction(
+  ADD_RECOMMENDATION_FAILURE,
   props<{any}>()
 );

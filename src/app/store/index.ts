@@ -40,6 +40,24 @@ export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [debug, localStorageSyncReducer] : [localStorageSyncReducer];
 
+// USER REDUCERS
+
+export const getLoginState = createFeatureSelector<fromUser.AuthState>('user');
+
+export const getLoggedInUser = createSelector(
+  getLoginState,
+  fromUser.getLoggedInUser
+);
+
+export const userLogin = createSelector(
+  getLoginState,
+  fromUser.userLogin
+);
+
+export const userSignup = createSelector(
+  getLoginState,
+  fromUser.userSignup
+);
 
 // Application reducers Begin
 
@@ -60,22 +78,3 @@ export const getApplication = createSelector(
 // Application Effects
 
 export const appEffects = [AuthEffects, ApplicationEffects];
-
-// USER REDUCERS
-
-export const getLoginState = createFeatureSelector<fromUser.AuthState>('user');
-
-export const getLoggedInUser = createSelector(
-  getLoginState,
-  fromUser.getLoggedInUser
-);
-
-export const userLogin = createSelector(
-  getLoginState,
-  fromUser.userLogin
-);
-
-export const userSignup = createSelector(
-  getLoginState,
-  fromUser.userSignup
-);

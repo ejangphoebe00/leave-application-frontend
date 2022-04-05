@@ -1,4 +1,7 @@
-
+export class User {
+  UserEmailAddress?:string;
+  UserPassword?:string;
+}
 
 export class AuthModel {
   UserId?:number;

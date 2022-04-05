@@ -22,6 +22,22 @@ export const PASSWORD_RECOVERY = '[Auth] Password Recovery';
 export const PASSWORD_RECOVERY_SUCCESS = '[Auth] Password Recovery Success';
 export const PASSWORD_RECOVERY_FAILURE = '[Auth] Password Recovery Failure';
 
+export const STORE_PASSWORD = '[Auth] Store Password';
+export const STORE_PASSWORD_SUCCESS = '[Auth] Store Password Success';
+export const STORE_PASSWORD_FAILURE = '[Auth] Store Password Failure';
+
+export const EDIT_PROFILE = '[Auth] Edit Profile';
+export const EDIT_PROFILE_SUCCESS = '[Auth] Edit Profile Success';
+export const EDIT_PROFILE_FAILURE = '[Auth] Edit Profile Failure';
+
+export const UPLOAD_PROFILE_PICTURE = '[Auth] Upload Profile Picture';
+export const UPLOAD_PROFILE_PICTURE_SUCCESS = '[Auth] Upload Profile Picture Success';
+export const UPLOAD_PROFILE_PICTURE_FAILURE = '[Auth] Upload Profile Picture Failure';
+
+export const GET_PROFILE_PICTURE = '[Auth] Get Profile Picture';
+export const GET_PROFILE_PICTURE_SUCCESS = '[Auth] Get Profile Picture Success';
+export const GET_PROFILE_PICTURE_FAILURE = '[Auth] Get Profile Picture Failure';
+
 // LOGIN ACTIONS
 export const login = createAction(
   LOGIN,
@@ -99,5 +115,70 @@ export const passwordRecoverySuccess = createAction(
 
 export const passwordRecoveryFailure = createAction(
   PASSWORD_RECOVERY_FAILURE,
+  props<{any}>()
+);
+
+
+// STORE PASSWORD ACTIONS
+export const storePassword = createAction(
+  STORE_PASSWORD,
+  props<any>()
+);
+
+export const storePasswordSuccess = createAction(
+  STORE_PASSWORD_SUCCESS,
+  props<any>()
+);
+
+export const storePasswordFailure = createAction(
+  STORE_PASSWORD_FAILURE,
+  props<{any}>()
+);
+
+// EDIT PROFILE ACTIONS
+export const editProfile = createAction(
+  EDIT_PROFILE,
+  props<{user: any}>()
+);
+
+export const editProfileSuccess = createAction(
+  EDIT_PROFILE_SUCCESS,
+  props<any>()
+);
+
+export const editProfileFailure = createAction(
+  EDIT_PROFILE_FAILURE,
+  props<{any}>()
+);
+
+// UPLOAD PROFILE PICTURE ACTIONS
+export const uploadProfilePicture = createAction(
+  UPLOAD_PROFILE_PICTURE,
+  props<{user: any}>()
+);
+
+export const uploadProfilePictureSuccess = createAction(
+  UPLOAD_PROFILE_PICTURE_SUCCESS,
+  props<any>()
+);
+
+export const uploadProfilePictureFailure = createAction(
+  UPLOAD_PROFILE_PICTURE_FAILURE,
+  props<{any}>()
+);
+
+// GET PROFILE PICTURE ACTIONS
+export const getProfilePicture = createAction(
+  GET_PROFILE_PICTURE,
+  props<any>()
+);
+
+export const getProfilePictureSuccess = createAction(
+  GET_PROFILE_PICTURE_SUCCESS,
+  props<any>()
+);
+
+export const getProfilePictureFailure = createAction(
+  GET_PROFILE_PICTURE_FAILURE,
   props<{any}>()
 );

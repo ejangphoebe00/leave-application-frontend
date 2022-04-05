@@ -27,10 +27,17 @@ export class ListSingleApplicationComponent {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
   applicationId: number;
+  data: any;
   ngOnInit(): void {
-    // this.store.dispatch(applicationActions.getSingleApplication(this.applicationId));
-    this.store.dispatch(applicationActions.getSingleApplication(1));
+    this.store.dispatch(applicationActions.getSingleApplication(this.applicationId));
+  }
 
+  compute(): void {
+    this.store.dispatch(applicationActions.computeApplication(this.data));
+  }
+
+  addRecommendation(): void {
+    this.store.dispatch(applicationActions.addRecommendation(this.data));
   }
 
 }

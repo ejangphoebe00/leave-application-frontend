@@ -27,10 +27,41 @@ export const loginReducer = createReducer(
   on(userActions.loginSuccess, (state, result) => ({user: result.user,
                           result, isAuthenticated: true, isLoading: false,
                           isLoadingSuccess: true, isLoadingFailure: false})),
+
   on(userActions.signup, (state, {user}) => ({user, isLoading: true, })),
   on(userActions.signupSuccess, (state, result) => ({user: state.user, result,
                           isLoading: false, isLoadingSuccess: true,
-                          isLoadingFailure: false, isAuthenticated: false}))
+                          isLoadingFailure: false, isAuthenticated: false})),
+
+  on(userActions.logout, (state) => ({...state, isLoading: true})),
+  on(userActions.logoutSuccess, (state, result) => ({user: state.user, result,
+                          isLoading: false, isLoadingSuccess: true,
+                          isLoadingFailure: false, isAuthenticated: false})),
+
+  on(userActions.passwordRecovery, (state, {user}) => ({user, isLoading: true, })),
+  on(userActions.passwordRecoverySuccess, (state, result) => ({user: state.user, result,
+                          isLoading: false, isLoadingSuccess: true,
+                          isLoadingFailure: false})),
+
+  on(userActions.storePassword, (state, {user}) => ({user, isLoading: true, })),
+  on(userActions.storePasswordSuccess, (state, result) => ({user: state.user, result,
+                          isLoading: false, isLoadingSuccess: true,
+                          isLoadingFailure: false, isAuthenticated: true})),
+
+  on(userActions.editProfile, (state, {user}) => ({user, isLoading: true, })),
+  on(userActions.editProfileSuccess, (state, result) => ({user: result.user, result,
+                          isLoading: false, isLoadingSuccess: true,
+                          isLoadingFailure: false, isAuthenticated: true})),
+
+  on(userActions.uploadProfilePicture, (state, {user}) => ({user, isLoading: true, })),
+  on(userActions.uploadProfilePictureSuccess, (state, result) => ({user: result.user, result,
+                          isLoading: false, isLoadingSuccess: true,
+                          isLoadingFailure: false, isAuthenticated: true})),
+
+  on(userActions.getProfilePicture, (state, {user}) => ({user, isLoading: true, })),
+  on(userActions.getProfilePictureSuccess, (state, result) => ({user: result.user, result,
+                          isLoading: false, isLoadingSuccess: true,
+                          isLoadingFailure: false, isAuthenticated: true}))
 );
 
 export function reducer(state: AuthState | undefined, action: Action): any {

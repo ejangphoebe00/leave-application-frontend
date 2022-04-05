@@ -16,12 +16,14 @@ import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '', component: AuthComponent, children:[
+  { path: '', component: AuthComponent,
+  children:[
     { path: 'sign-in', component: LoginComponent },
     { path: 'sign-up', component: RegisterComponent },
   ] },
 
-  { path: '', component: BaseComponent, children:[
+  { path: '', component: BaseComponent,
+  children:[
     { path: 'dashboard', component: DashboardComponent },
     { path: 'apply-for-leave', component: AddLeaveApplicationComponent },
     { path: 'edit-leave-application/:application-id', component: EditLeaveApplicationComponent },

@@ -10,8 +10,6 @@ import * as authActions from 'src/app/store/actions/auth.actions';
 import * as fromRoot from 'src/app/store';
 import { User } from 'src/app/models';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,32 +22,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private readonly store: Store,
     private apiService: ApiService
-  ) {
-
-    this.store.select(fromRoot.getLoginState).pipe(
-        takeUntil(this.destroy$)
-      ).subscribe(data => {
-        localStorage.setItem("role",data.result.role);
-        localStorage.setItem("userId",data.result.userId);
-        localStorage.setItem("access_token", data.result.access_token);
-        localStorage.setItem("refresh_token", data.result.refresh_token);
-      });
-
-    if (this.apiService.getAccessToken() != "") {
-      this.router.navigate(['/apply_for_leave']);
-    };
-
-  }
+  ) {}
 
   user: User = new User()
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit(loginForm: NgForm) {
-    // console.log(this.user)
     this.store.dispatch(authActions.login({
       user: {
               UserEmailAddress: this.user.UserEmailAddress,
@@ -58,13 +39,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     }));
   }
 
-
   ngOnDestroy(){
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
-
-
-
 
 }
