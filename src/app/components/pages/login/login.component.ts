@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { ApiService } from 'src/app/services/api.service';
 import * as authActions from 'src/app/store/actions/auth.actions';
 import * as fromRoot from 'src/app/store';
-import { User } from 'src/app/models';
+import { AuthModel } from 'src/app/models';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private apiService: ApiService
   ) {}
 
-  user: User = new User()
-
+  user: AuthModel = new AuthModel()
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   ngOnInit() {}

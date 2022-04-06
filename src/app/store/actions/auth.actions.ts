@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { AuthModel, User } from 'src/app/models';
+import { AuthModel} from 'src/app/models';
 
 
 export const LOGIN = '[Auth] Login User';
@@ -41,7 +41,7 @@ export const GET_PROFILE_PICTURE_FAILURE = '[Auth] Get Profile Picture Failure';
 // LOGIN ACTIONS
 export const login = createAction(
   LOGIN,
-  props<{user: User}>()
+  props<{user: AuthModel}>()
 );
 
 export const loginSuccess = createAction(
@@ -57,7 +57,7 @@ export const loginFailure = createAction(
 // SIGNUP ACTIONS
 export const signup = createAction(
   SIGNUP,
-  props<{user: User}>()
+  props<{user: any}>()
 );
 
 export const signupSuccess = createAction(

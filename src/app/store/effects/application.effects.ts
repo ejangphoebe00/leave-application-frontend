@@ -35,6 +35,17 @@ export class ApplicationEffects {
     )
   );
 
+  editAddress$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(applicationActions.editAddress),
+      exhaustMap(action =>
+        this.apiService.editAddress(action.address).pipe(
+          map(response => applicationActions.editAddressSuccess(response)),
+          catchError((error: any) => of(applicationActions.editAddressFailure(error))))
+      )
+    )
+  );
+
   getAllApplications$ = createEffect(() =>
     this.actions$.pipe(
       ofType(applicationActions.getAllApplications),

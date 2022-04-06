@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-password-reset',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PasswordResetComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private apiService: ApiService
+
+  ) { }
 
   ngOnInit(): void {
+    this.apiService.viewingStatus();
   }
 
 }

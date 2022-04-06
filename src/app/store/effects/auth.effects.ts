@@ -40,8 +40,10 @@ export class AuthEffects {
       ofType(authActions.signup),
       exhaustMap(action =>
         this.apiService.signup(action.user).pipe(
-          map(response => authActions.signupSuccess(response)
-          ),
+          map(response => {
+            return authActions.signupSuccess(response);
+            console.log("..effects");
+          }),
           catchError((error: any) => of(authActions.signupFailure(error))))
       )
     )

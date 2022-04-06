@@ -10,6 +10,12 @@ import * as authActions from 'src/app/store/actions/auth.actions';
 import * as fromRoot from 'src/app/store';
 import { AuthModel } from 'src/app/models';
 
+class ImageSnippet {
+  constructor(
+    public src: string,
+    public file: File
+  ) {}
+}
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,13 +24,31 @@ import { AuthModel } from 'src/app/models';
 })
 export class EditProfileComponent implements OnInit {
 
+  selectedFile: ImageSnippet;
+
   constructor(
     private router: Router,
     private readonly store: Store,
     private apiService: ApiService
   ) { }
 
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+    this.apiService.uploadProfilePicture(this.selectedFile.file).subscribe(
+      (res) => {},
+      (err) => {}
+    )
+  });
+  reader.readAsDataURL(file)
+  }
+
   ngOnInit(): void {
+    this.apiService.viewingStatus();
   }
 
 
@@ -39,6 +63,7 @@ export class EditProfileComponent implements OnInit {
     AddressDetail: new FormControl(),
     Telephone: new FormControl(),
     NextOfKinContact: new FormControl(),
+    
   });
 
   // destroy$: Subject<boolean> = new Subject<boolean>();

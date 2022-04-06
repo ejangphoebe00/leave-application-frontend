@@ -1,5 +1,6 @@
 <div class="container-fluid">
 
+
     <div class="container">
       <!-- Title -->
       <div class="d-flex justify-content-between align-items-center py-3 p-5">
@@ -7,7 +8,7 @@
       </div>
 
       <!-- Main content -->
-      <form>
+      <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-lg-8">
             <!-- Details -->

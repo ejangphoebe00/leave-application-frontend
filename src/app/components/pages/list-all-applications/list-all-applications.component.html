@@ -21,8 +21,8 @@
             </thead>
             <tbody *ngIf="applications?.length != 0">
                 <tr *ngFor="let app of applications; let i = index">
-                  <td> {{ app.ApplicantId.Lastname }} </td>
-                  <td> {{ app.Firstname }} </td>
+                  <td> {{ app.Lastname }} </td>
+                  <td> {{ app.Firstname }}.split(".")[1] </td>
                   <td> {{ app.ApplicantLevel }} </td>
                   <td> {{ app.Designation }} </td>
                   <td> {{ app.ApplicantId }} </td>

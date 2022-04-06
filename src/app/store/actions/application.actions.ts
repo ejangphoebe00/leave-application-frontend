@@ -73,6 +73,22 @@ export const editApplicationFailure = createAction(
   props<{any}>()
 );
 
+// EDIT APPLICATION ADDRESS
+export const editAddress = createAction(
+  EDIT_ADDRESS,
+  props<{address: any}>()
+);
+
+export const editAddressSuccess = createAction(
+  EDIT_ADDRESS_SUCCESS,
+  props<any>()
+);
+
+export const editAddressFailure = createAction(
+  EDIT_ADDRESS_FAILURE,
+  props<{any}>()
+);
+
 // GET APPLICATION ACTIONS
 export const getAllApplications = createAction(
   GET_ALL_APPLICATIONS

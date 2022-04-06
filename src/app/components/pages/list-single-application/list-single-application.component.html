@@ -1,8 +1,132 @@
-<h3> Application details </h3>
-<hr>
-<p> {{ application.ApplicantionLevel }} </p>
-<p> {{ application.Designation }} </p>
-<p> {{ application.applicationlicantId }} </p>
-<p> {{ application.TypeOfLeave }} </p>
-<p> {{ application.NumberOfDaysNeeded }} </p>
-<p> {{ application.ReturnDate }} </p>
+
+
+<div class="container-fluid m-5">
+
+    <div class="container ">
+
+        <div class="row">
+          <div class="col-lg-8">
+            <!-- Details -->
+            <div class="card ">
+              <div class="card-body">
+                <h3> Leave Application</h3>
+
+                <div class="dropdown text-right">
+                  <button type="button" class="btn btn-dark dropdown-toggle" id="dropdownMenuIconButton7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <!-- <i class="ti-user"></i> -->
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton7">
+                    <a class="dropdown-header" data-toggle="modal" data-target="#basicExample">Compute</a>
+                    <a class="dropdown-item" href="#">Approve</a>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" href="#">Recommend</a>
+
+                  </div>
+                </div>
+                <hr>
+                <table class="table table-striped table-bordered table-advance table-hover">
+                    <tbody >
+                      <tr><td style="width:25%">Application Id</td>
+                       <td><td>{{application.ApplicationId}}</td></tr>
+                      <tr><td style="width:25%">Designation</td>
+                       <td>{{application.Designation}}</td></tr>
+                      <tr><td style="width:25%">Applicant Level</td>
+                       <td>{{application.ApplicantLevel}}</td></tr>
+                      <tr><td style="width:25%">Applicant Id</td>
+                       <td>{{application.ApplicantId}}</td></tr>
+                      <tr><td style="width:25%">Type Of Leave</td>
+                       <td>{{application.TypeOfLeave}}</td></tr>
+                      <tr><td style="width:25%">Number Of Days Needed</td>
+                       <td>{{application.NumberOfDaysNeeded}}</td></tr>
+                      <tr><td style="width:25%">Return Date</td>
+                       <td>{{application.ReturnDate}}</td></tr>
+                      <tr><td style="width:25%">Leave Commencement</td>
+                       <td>{{application.LeaveCommencement}}</td></tr>
+                      <tr><td style="width:25%">Application Date</td>
+                       <td>{{application.ApplicationDate}}</td></tr>
+                      <tr><td style="width:25%">Leave Balance Brought Forward</td>
+                       <td>{{application.LeaveBalanceBroughtForward}}</td></tr>
+                      <tr><td style="width:25%">Leave Due In Year</td>
+                       <td>{{application.LeaveDueInYear}}</td></tr>
+                      <tr><td style="width:25%">Less Leave Taken</td>
+                       <td>{{application.LessLeaveTaken}}</td></tr>
+                      <tr><td style="width:25%">Balance Carried Forward</td>
+                       <td>{{application.BalanceCarriedForward}}</td></tr>
+                      <tr><td style="width:25%">Computed By</td>
+                       <td>{{application.ComputedBy}}</td></tr>
+                      <tr><td style="width:25%">Verified By</td>
+                       <td>{{application.VerifiedBy}}</td></tr>
+                      <tr><td style="width:25%">Approval Status</td>
+                       <td>{{application.ApprovalStatus}}</td></tr>
+                      <tr><td style="width:25%">Decline Reason</td>
+                       <td>{{application.DeclineReason}}</td></tr>
+                      <tr><td style="width:25%">Approved Or Declined By</td>
+                       <td>{{application.ApprovedOrDeclinedBy}}</td></tr>
+                      <tr><td style="width:25%">Creation Date</td>
+                       <td>{{application.CreationDate}}</td></tr>
+                      <tr><td style="width:25%">Update Date</td>
+                       <td>{{application.UpdateDate}}</td></tr>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+
+  <!-- <button type="button" mdbBtn color="default" rounded="true"
+    (click)="frame.show()" mdbWavesEffect>Launch Modal
+  </button> -->
+  <div  class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Subscribe</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <!-- <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon> -->
+            <input type="text" id="form3" class="form-control" formControlName="subscriptionFormModalName" mdbInput
+              mdbValidate>
+            <label for="form3">Your name</label>
+            <!-- <mdb-error
+              *ngIf="subscriptionFormModalName.invalid && (subscriptionFormModalName.dirty || subscriptionFormModalName.touched)">
+              Input invalid
+            </mdb-error>
+            <mdb-success
+              *ngIf="subscriptionFormModalName.valid && (subscriptionFormModalName.dirty || subscriptionFormModalName.touched)">
+              Input valid
+            </mdb-success> -->
+          </div>
+          <div class="md-form mb-4">
+            <!-- <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon> -->
+            <input type="email" id="form2" class="form-control" formControlName="subscriptionFormModalEmail"
+              mdbInput mdbValidate>
+            <label for="form2">Your email</label>
+            <!-- <mdb-error
+              *ngIf="subscriptionFormModalEmail.invalid && (subscriptionFormModalEmail.dirty || subscriptionFormModalEmail.touched)">
+              Input invalid
+            </mdb-error>
+            <mdb-success
+              *ngIf="subscriptionFormModalEmail.valid && (subscriptionFormModalEmail.dirty || subscriptionFormModalEmail.touched)">
+              Input valid
+            </mdb-success> -->
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button mdbBtn color="indigo" class="waves-light" mdbWavesEffect>Send
+            <!-- <mdb-icon far icon="paper-plane" class="ml-1"></mdb-icon> -->
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

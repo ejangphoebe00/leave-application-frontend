@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Application } from '../../models';
+import { Application, Address } from '../../models';
 import * as applicationActions from '../actions/application.actions';
 import * as _ from 'lodash'
 import * as storage from '../storage';
@@ -7,6 +7,7 @@ import * as storage from '../storage';
 export interface State {
   applications?: Application[];
   application?: Application;
+  address?: Address[];
   currentApplication?: Application;
   deleteApplicationId?: any;
   result?: any;
@@ -17,6 +18,7 @@ export interface State {
 
 export const initialState: State = {
   applications: storage.getItem('app_f').applications,
+  address: storage.getItem('app_f').address,
   currentApplication: {},
   application: {},
   deleteApplicationId: '',
@@ -85,6 +87,12 @@ const app_fReducer = createReducer(
       };
     })
   );
+
+    // Edit Address Reducers
+    // on(applicationActions.editAddress, (state, {address}) => ({...state, address,
+    //   isLoading: true})),
+    // on(applicationActions.editAddressSuccess, (state, result) => ({result
+    //   isLoading: false, isLoadingSuccess: true})),
 
 
   // on(applicationActions.computeApplication, (state, {application}) => ({...state, isLoading: true, currentApplication: application})),

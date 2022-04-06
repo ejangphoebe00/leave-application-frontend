@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { takeUntil} from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import * as fromRoot from 'src/app/store';
+
 import * as applicationActions from 'src/app/store/actions/application.actions';
-import * as authActions from 'src/app/store/actions/auth.actions';
+import { ApiService } from 'src/app/services/api.service';
+
 
 
 @Component({
@@ -17,11 +16,13 @@ import * as authActions from 'src/app/store/actions/auth.actions';
 export class AddLeaveApplicationComponent implements OnInit {
 
   constructor(
-    private router: Router,
     private readonly store: Store,
+    private apiService: ApiService
+
   ) { }
 
   ngOnInit(): void {
+    this.apiService.viewingStatus();
   }
 
   add() {
@@ -59,7 +60,7 @@ export class AddLeaveApplicationComponent implements OnInit {
     NextOfKinContact: new FormControl(),
   });
 
-  destroy$: Subject<boolean> = new Subject<boolean>();
+  // destroy$: Subject<boolean> = new Subject<boolean>();
 
   onSubmit() {
     const data = this.applicationForm.value;

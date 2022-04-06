@@ -2,8 +2,11 @@ import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { takeUntil} from 'rxjs/operators';
 import { Subject } from 'rxjs';
+
 import * as fromRoot from 'src/app/store';
 import * as applicationActions from 'src/app/store/actions/application.actions';
+import { ApiService } from 'src/app/services/api.service';
+
 
 
 @Component({
@@ -17,8 +20,12 @@ export class ListSingleUserApplicationsComponent {
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(private readonly store: Store
+  constructor(
+    private readonly store: Store,
+    private apiService: ApiService
+
     ) {
+
         this.store.select(fromRoot.getApplications).pipe(
             takeUntil(this.destroy$)
           ).subscribe(data => {
@@ -32,6 +39,7 @@ export class ListSingleUserApplicationsComponent {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   ngOnInit(): void {
+    this.apiService.viewingStatus();
     this.store.dispatch(applicationActions.getUserApplications());
     this.dtOptions = {
       dom:'Bfrtip',

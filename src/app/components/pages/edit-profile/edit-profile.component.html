@@ -13,12 +13,56 @@
               <div class="card mb-4 mb-xl-0">
                   <div class="card-header">Profile Picture</div>
                   <div class="card-body text-center">
+                    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+                        <img class="img-account-profile rounded-circle mb-2" src="..//src/assets/img/profile-icon.png" alt="">
+                        <!-- Profile picture help block-->
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+
+                  			<div class="button_outer">
+                  				<div class="btn_upload primary">
+
+                  					<input type="file" id="upload_file" name="" #imageInput type="file" accept="image/*"
+                            (change)="processFile(imageInput)" value="">
+                  					Upload new image
+                  				</div>
+                  				<div class="processing_bar"></div>
+
+
+                    			<div class="button_outer">
+                    				<div class="btn_upload">
+                    					<input type="file" id="upload_file" name="">
+                    					Upload Image
+                    				</div>
+                    				<div class="processing_bar"></div>
+                    				<div class="success_box"></div>
+                    			</div>
+
+                      		<div class="error_msg"></div>
+                      		<div class="uploaded_file_view" id="uploaded_view">
+                      			<span class="file_remove">X</span>
+                      		</div>
+
+                          <div class="success_box">
+                          </div>
+                  			</div>
+
+                    		<div class="uploaded_file_view" id="uploaded_view">
+                    			<span class="file_remove">X</span>
+                    		</div>
+
+
+
                       <!-- Profile picture image-->
-                      <img class="img-account-profile rounded-circle mb-2" src="..//src/assets/img/profile-icon.png" alt="">
-                      <!-- Profile picture help block-->
-                      <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+
+
                       <!-- Profile picture upload button-->
-                      <button class="btn btn-primary" type="button">Upload new image</button>
+                      <!-- <button class="btn btn-primary" type="button">Upload new image</button> -->
+                      <!-- <label class="image-upload-container btn btn-bwm">
+                        <span>select image</span>
+                        <input class= "btn btn-primary col-8" >
+                      </label> -->
                   </div>
               </div>
           </div>
@@ -162,3 +206,30 @@
       </div>
   </div>
 </div>
+
+  <script>
+    var btnUpload = $("#upload_file"),
+        btnOuter = $(".button_outer");
+      btnUpload.on("change", function(e){
+        var ext = btnUpload.val().split('.').pop().toLowerCase();
+        if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+          $(".error_msg").text("Not an Image...");
+        } else {
+          $(".error_msg").text("");
+          btnOuter.addClass("file_uploading");
+          setTimeout(function(){
+            btnOuter.addClass("file_uploaded");
+          },3000);
+          var uploadedFile = URL.createObjectURL(e.target.files[0]);
+          setTimeout(function(){
+            $("#uploaded_view").append('<img src="'+uploadedFile+'" />').addClass("show");
+          },3500);
+        }
+      });
+      $(".file_remove").on("click", function(e){
+        $("#uploaded_view").removeClass("show");
+        $("#uploaded_view").find("img").remove();
+        btnOuter.removeClass("file_uploading");
+        btnOuter.removeClass("file_uploaded");
+      });
+  </script>

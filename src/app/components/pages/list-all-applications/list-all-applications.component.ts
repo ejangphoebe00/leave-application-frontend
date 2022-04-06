@@ -4,7 +4,7 @@ import { takeUntil} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import * as fromRoot from 'src/app/store';
 import * as applicationActions from 'src/app/store/actions/application.actions';
-// import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
@@ -19,9 +19,11 @@ export class ListAllApplicationsComponent {
   dtTrigger: Subject<any> = new Subject<any>();
 
   constructor(
-    // private apiService: ApiService,
+    private apiService: ApiService,
     private readonly store: Store
+
   ) {
+
     this.store.select(fromRoot.getApplications).pipe(
         takeUntil(this.destroy$)
       ).subscribe(data => {
@@ -33,6 +35,7 @@ export class ListAllApplicationsComponent {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   ngOnInit(): void {
+    this.apiService.viewingStatus();
     this.store.dispatch(applicationActions.getAllApplications());
       this.dtOptions = {
         dom:'Bfrtip',

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 import { BaseComponent } from './components/base/base.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/Pages/login/login.component';
 import { AddLeaveApplicationComponent } from './components/pages/add-leave-application/add-leave-application.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { EditLeaveApplicationComponent } from './components/pages/edit-leave-application/edit-leave-application.component';
@@ -12,7 +12,7 @@ import { ListSingleApplicationComponent } from './components/pages/list-single-a
 import { ListSingleUserApplicationsComponent } from './components/pages/list-single-user-applications/list-single-user-applications.component';
 import { PasswordResetEmailComponent } from './components/pages/password-reset-email/password-reset-email.component';
 import { PasswordResetComponent } from './components/pages/password-reset/password-reset.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/Pages/register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

@@ -25,6 +25,11 @@ export class ApiService {
     localStorage.setItem("refresh_token", response.refresh_token);
   }
 
+  viewingStatus() {
+    if (this.getAccessToken() == null) {
+      this.router.navigate(['/sign-in']);
+    }
+  }
 
   redirectAuthenticated(){
     setTimeout(() => {
@@ -46,22 +51,20 @@ export class ApiService {
 
   //    (  AUTH ENDPOINTS  )    //
 
-  signup(data: any): Observable<AuthModel> {
-    const url = this.BASE_URL+"user/registration";
-    return this.http.post<AuthModel>(url, data);
+  signup(data: any): Observable<any> {
+    const url = `${this.BASE_URL}/user/registration`;
+    return this.http.post(url, data);
   }
 
-  login(data: User): Observable<any> {
+  login(data: AuthModel): Observable<any> {
     const url = `${this.BASE_URL}/user/login`;
     return this.http.post(url, data);
-    this.router.navigate(['/apply-for-leave']);
   }
 
   logout(): Observable<any> {
     const userId = this.getUserId()
     const url = `${this.BASE_URL}/user/logout/${userId}`;
-    // localStorage.removeItem('token')
-    // this.router.navigate(['/sign-in']);
+    localStorage.removeItem('token');
     return this.http.delete(url);
   }
 
@@ -106,13 +109,13 @@ export class ApiService {
   }
 
   editApplication(data: any): Observable<any> {
-    const applicationId = data.applicationId
-    const url = "/apiv1/update_leave_application/";
-    return this.http.put(this.BASE_URL + url + applicationId, data);
+    const applicationId = data.ApplicationId
+    const url = `${this.BASE_URL}/apiv1/update_leave_application/${applicationId}`;
+    return this.http.put(url, data);
   }
 
-  editApplicationAddress(data: any): Observable<any>  {
-    const applicationId = data.applicationId
+  editAddress(data: any): Observable<any>  {
+    const applicationId = data.ApplicationId
     const addressId = data.addressId
     const url = `${this.BASE_URL}/apiv1/update_leave_application_address_details/`
     return this.http.put(url + applicationId + "/" + addressId, data);
